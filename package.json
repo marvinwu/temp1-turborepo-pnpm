@@ -1,0 +1,38 @@
+{
+  "name": "turborepo-pnpm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "workspace": [
+    "app",
+    "ui"
+  ],
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "deploy": "turbo run build --scope=app --includeDependencies --no-deps"
+  },
+  "turbo": {
+    "pipeline": {
+      "dev": {
+        "cache": false
+      },
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          ".next/**",
+          "dist/**"
+        ]
+      }
+    }
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "pnpm": "^6.23.6",
+    "turbo": "^1.0.6"
+  }
+}
